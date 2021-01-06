@@ -17,4 +17,4 @@ mongoose.connect(process.env.DB_CONNECTION, {useNewUrlParser: true}, ()=>
                 console.log('connected to db!')
                 );
 
-app.listen(PORT);
+                app.set('port', (process.env.PORT || 5000));
