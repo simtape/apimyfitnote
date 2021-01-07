@@ -6,8 +6,13 @@ router.get('/get', async(req, res)=>{
     try{
         const user = await User.find();
         res.json(user);
+        console.log(user);
     }catch(err)
-    {res.json({message:err});}
+    {
+        console.log(res.body);
+        res.json({message:err});
+
+    }
 
 });
 
