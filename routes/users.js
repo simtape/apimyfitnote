@@ -2,12 +2,15 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/User');
 
-router.get('/', (req, res)=>{
-    res.send('We are on user');
+router.get('/', async(req, res)=>{
+    try{const user = await User.find();
+        res.json(user);
+    }catch(err)
+    {res.json({message:err});}
 
 });
 
-router.post('/', (req, res)=>{
+router.post('/',async (req, res)=>{
     const user = new User({
         name: req.body.name,
         surname: req.body.surname,
@@ -17,15 +20,12 @@ router.post('/', (req, res)=>{
         age: req.body.age,
         password: req.body.password
     });
-
-    user.save()
-    .then(data=>{
-        res.json(data);
-
-    })
-    .catch(err=>{
+    try{    
+        const savedUser = await user.save();
+        res.json(savedUser);
+    }   
+    catch(err){ 
         res.json({message: err});
-
-    })
+}
 });
 module.exports = router;
