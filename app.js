@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const postRoute = require('./routes/posts');
 const userRoute = require('./routes/users');
 const alimentRoute = require('./routes/aliments');
+const exerciseRoute = require('./routes/exercises');
 const bodyParser = require('body-parser');
 const Alimento = require('./models/Alimento');
 
@@ -12,6 +13,7 @@ app.use(bodyParser.json());
 app.use('/posts', postRoute);
 app.use('/users', userRoute);
 app.use('/aliments', alimentRoute);
+app.use('/exercises', exerciseRoute);
 
 
 
