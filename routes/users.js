@@ -24,7 +24,8 @@ router.post('/postend',async (req, res)=>{
         weight: req.body.weight,
         mail: req.body.mail,
         age: req.body.age,
-        password: req.body.password
+        password: req.body.password,
+        sheet: req.body.sheet
     });
     try{    
         const savedUser = await user.save();

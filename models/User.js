@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const UserSchema = mongoose.Schema({
-    name: {
+   name: {
         type: String,
         required: true
     },
@@ -29,7 +29,31 @@ const UserSchema = mongoose.Schema({
         type: String,
         required: true
     },
-
+    sheet: [
+        {
+        exercises:{
+            name:
+            {
+                type: [String],
+                required: true
+            },
+            series:{
+                type: [Number],
+                required: true
+    
+            },
+            reps:{
+                type: [Number],
+                required: true
+    
+            }
+        },
+        days:{ 
+            type: [String],
+            required: true
+        },
+  }
+     ]
 })
 
 module.exports = mongoose.model('Users', UserSchema);
