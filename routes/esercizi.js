@@ -1,8 +1,26 @@
 const express = require('express');
 const router = express.Router();
 const Exercises = require('../models/Esercizio');
+const fs = require('fs');
+let rawdata = fs.readFileSync('scrape copy.json');
+var exercises = JSON.parse(rawdata);
 
-router.get('/get', async(req, res)=>{
+
+router.post('/inserisci_esercizi', async(res, req)=>{
+    console.log(exercises.length);
+
+    try{    
+        //const savedExercises = await Exercises.insertMany(exercises);
+        //res.json(savedExercises);
+        console,log(exercises);
+    }   
+    catch(err){ 
+        //res.json({message: err});
+    }
+
+})
+module.exports = router;
+/* router.get('/get', async(req, res)=>{
     try{
         const exercises = await Exercises.find();
         res.json(exercises);
@@ -29,6 +47,7 @@ router.post('/postend',async (req, res)=>{
     catch(err){ 
         res.json({message: err});
 }
-});
-module.exports = router;
+}); */
+
+
 
