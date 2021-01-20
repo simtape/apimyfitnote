@@ -10,9 +10,9 @@ router.post('/inserisci_alimenti', async(res, req)=>{
     console.log(aliments.length);
 
         try{   
-            console.log(aliments); 
-          /*   const alimentoSalvato = await Alimento.insertMany(aliments);
-            res.json(alimentoSalvato); */
+          
+          const alimentoSalvato = await Alimento.insertMany(aliments);
+            res.json(alimentoSalvato);
         }   
         catch(err){ 
             res.json({message: err});
