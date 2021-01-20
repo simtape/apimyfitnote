@@ -12,7 +12,7 @@ router.post('/inserisci_alimenti', async(res, req)=>{
         try{   
           
           const alimentoSalvato = await Alimento.insertMany(aliments);
-            res.json(alimentoSalvato);
+           
         }   
         catch(err){ 
             res.json({message: err});
