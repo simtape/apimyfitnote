@@ -6,26 +6,26 @@ const jwt = require('jsonwebtoken');
 
 
 
-router.post('/registrazione', async (req, res) => {
-    bcrypt.hash(req.body.password, 10, function (err, hashedPass) {
-        if (err) {
+router.post('/registrazione',async(req, res) =>{
+    bcrypt.hash(req.body.password, 10, function(err, hashedPass){
+        if(err) {
             res.json({
                 error: err
             })
         }
-        const user = new User({
-            name: req.body.name,
-            surname: req.body.surname,
-            username: req.body.username,
-            height: req.body.height,
-            weight: req.body.weight,
-            mail: req.body.mail,
-            age: req.body.age,
-            password: hashedPass,
-            sheet: req.body.sheet
-        })
-        user.save()
-            .then(user => {
+            const user = new User ({
+                name: req.body.name,
+                surname: req.body.surname,
+                username: req.body.username,
+                height: req.body.height,
+                weight: req.body.weight,
+                mail: req.body.mail,
+                age: req.body.age,
+                password: hashedPass,
+                sheet: req.body.sheet
+            })
+            user.save()
+            .then(user =>{
                 res.json({
                     message: 'Utente registrato con successo!'
                 })
@@ -35,9 +35,25 @@ router.post('/registrazione', async (req, res) => {
                     message: 'errore!'
                 })
             })
+        
+    }) 
+    });
 
-    })
-});
+
+/* 
+        new_user.save()
+            .then(user => {
+                res.json({
+                    message: 'Utente registrato con successo!'
+                })
+            })
+            .catch(error => {
+                res.json({
+                    message: 'errore!'
+                })
+            }) */
+
+
 
 router.get('/get', async (req, res) => {
     try {
@@ -52,7 +68,7 @@ router.get('/get', async (req, res) => {
 
 });
 
-router.post('/postend', async (req, res) => {
+/* router.post('/postend', async (req, res) => {
     const user = new User({
         name: req.body.name,
         surname: req.body.surname,
@@ -71,7 +87,7 @@ router.post('/postend', async (req, res) => {
     catch (err) {
         res.json({ message: err });
     }
-});
+}); */
 
 
 router.post('/login', function (req, res) {
@@ -111,7 +127,6 @@ router.post('/login', function (req, res) {
 
             }
         }
-
-        )
+)
 });
 module.exports = router;
