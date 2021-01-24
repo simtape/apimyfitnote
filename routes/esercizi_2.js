@@ -33,6 +33,4 @@ router.post('/inserisci_esercizi', async(res, req)=>{
     }
 })
 
-
-
 module.exports = router;
