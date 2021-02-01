@@ -31,7 +31,7 @@ const UserSchema = mongoose.Schema({
         required: true
     },
     sheet: 
-        {
+       [{
         exercises:{
             name:
             {
@@ -53,7 +53,7 @@ const UserSchema = mongoose.Schema({
             type: [String],
             required: true
         },
-  }
+  }]
      
 })
 
