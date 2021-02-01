@@ -68,7 +68,7 @@ router.post('/login', function (req, res) {
     var mail_inserita = req.body.mail;
     var password_inserita = req.body.password;
     //console.log(bcrypt.hash(password));
-      var user =  User.findOne({ mail: mail_inserita })
+      User.findOne({ mail: mail_inserita })
             .then(user => {
                 if (user) {
                     bcrypt.compare(password_inserita, user.password, function(err, result){
