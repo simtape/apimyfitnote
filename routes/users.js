@@ -84,7 +84,7 @@ router.post('/login', function (req, res) {
                             //message:"Login effettuato con successo",
                             res.json({
                               
-                                message: user
+                                user
     
                             })
     
