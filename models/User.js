@@ -53,8 +53,8 @@ const UserSchema = mongoose.Schema({
             type: [String],
             required: true
         },
-  }
-     ]
+  }]
+     
 })
 
 module.exports = mongoose.model('Users', UserSchema);
