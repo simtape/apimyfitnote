@@ -30,7 +30,9 @@ router.post('/registrazione', async (req, res) => {
         user.save()
             .then(user => {
                 res.json({
-                    message: user
+                    user
+                    
+
                 })
             })
             .catch(error => {
@@ -39,7 +41,7 @@ router.post('/registrazione', async (req, res) => {
                     if (number != 0) {
 
                         res.json({
-                            message: 'esiste gia questa mail!'
+                            message: ' mail già esistente'
                         })
                     }
 
