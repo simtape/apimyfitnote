@@ -22,6 +22,7 @@ router.post('/registrazione', async (req, res) => {
             height: req.body.height,
             weight: req.body.weight,
             mail: req.body.mail,
+    
             password: hashedPass,
             sheet: req.body.sheet
         })
@@ -29,6 +30,8 @@ router.post('/registrazione', async (req, res) => {
             .then(user => {
                 res.json({
                     message: user
+                    
+
                 })
             })
             .catch(error => {
@@ -37,7 +40,7 @@ router.post('/registrazione', async (req, res) => {
                     if (number != 0) {
 
                         res.json({
-                            message: 'esiste gia questa mail!'
+                            message: ' mail già esistente'
                         })
                     }
 

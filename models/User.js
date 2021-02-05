@@ -18,6 +18,7 @@ const UserSchema = mongoose.Schema({
         required: true, 
         unique: true
     },
+    
     weight: {
         type: String,
         required: true
