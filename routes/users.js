@@ -30,7 +30,7 @@ router.post('/registrazione', async (req, res) => {
         user.save()
             .then(user => {
                 res.json({
-                    user
+                    message: user
                     
 
                 })
