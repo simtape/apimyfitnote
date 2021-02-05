@@ -22,12 +22,12 @@ router.post('/registrazione', async (req, res) => {
             height: req.body.height,
             weight: req.body.weight,
             mail: req.body.mail,
-            password: hashedPass,
+            password: hashedPass
         })
         user.save()
             .then(user => {
                 res.json({
-            user
+                        user
                     
 
                 })
