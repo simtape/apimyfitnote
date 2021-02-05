@@ -23,9 +23,7 @@ router.post('/registrazione', async (req, res) => {
             height: req.body.height,
             weight: req.body.weight,
             mail: req.body.mail,
-    
             password: hashedPass,
-            sheet: req.body.sheet
         })
         user.save()
             .then(user => {
