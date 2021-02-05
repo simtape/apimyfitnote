@@ -18,10 +18,7 @@ const UserSchema = mongoose.Schema({
         required: true, 
         unique: true
     },
-    age: {
-        type: String,
-        required: true
-    },
+    
     weight: {
         type: String,
         required: true
