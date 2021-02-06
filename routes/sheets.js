@@ -19,7 +19,7 @@ router.post('/create_sheet', async (req, res) => {
     })
 });
 
-router.get('/get_sheets', async (req, res) => {
+router.post('/get_sheets', async (req, res) => {
     Sheet.find({ user_id: req.body.user_id }).then(sheet => function (err, result) {
         if (err) {
             res.json({
