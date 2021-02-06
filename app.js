@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const userRoute = require('./routes/users');
 const alimentRoute = require('./routes/aliments');
 const exerciseRoute = require('./routes/esercizi_2');
+const sheetsRoute = require('./routes/sheets');
 const bodyParser = require('body-parser');
 const Alimento = require('./models/Alimento');
 
@@ -13,9 +14,7 @@ app.use(bodyParser.json());
 app.use('/users', userRoute);
 app.use('/aliments', alimentRoute);
 app.use('/esercizi_2', exerciseRoute);
-
-
-
+app.use('/sheets', sheetsRoute);
 
 mongoose.connect(process.env.DB_CONNECTION, { useNewUrlParser: true }, async () => {
     console.log('connected to db!')
