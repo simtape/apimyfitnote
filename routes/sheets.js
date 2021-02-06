@@ -20,7 +20,28 @@ router.post('/create_sheet', async (req, res) => {
 });
 
 router.post('/get_sheets', async (req, res) => {
-    Sheet.find({ user_id: req.body.user_id }).then(sheet => function (err, result) {
+
+    var user_to_compare = req.body.user_id;
+    
+    Sheet.find({user_id: user_to_compare}).then(sheet=>{
+        if(sheet){
+            res.json({
+                sheet
+            })
+        
+
+        } else if(err){
+            res.json({
+                errore: err
+            })
+        }
+
+
+
+    });
+    console.log(found_sheet);
+
+    /* .then(sheet => function (err, result) {
         if (err) {
             res.json({
                 message: "non hai nessuna scheda"
@@ -32,7 +53,7 @@ router.post('/get_sheets', async (req, res) => {
                 sheet
             })
         }
-    })
+    }) */
 
 });
 
