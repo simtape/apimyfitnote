@@ -9,6 +9,7 @@ router.post('/create_sheet', async (req, res) => {
         days: req.body.days,
         reps: req.body.reps,
         series: req.body.series,
+        name_sheet: req.body.name_sheet,
         user_id: req.body.user_id
     })
 
