@@ -26,8 +26,7 @@ router.get('/get_sheets', async (req, res) => {
     Sheet.find({user_id: user_to_compare}).then(sheet=>{
         if(sheet.length > 0){
             res.json({
-                sheet,
-                error: "false"
+                sheet
             })
         
 
