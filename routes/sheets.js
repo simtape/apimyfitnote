@@ -13,28 +13,40 @@ router.post('/create_sheet', async (req, res) => {
         user_id: req.body.user_id
     })
 
-    sheet.save().then(sheet => {
-        res.json({
-            sheet
-        })
+    Sheet.find({ name_sheet: req.body.name_sheet }).count(function (err, number) {
+        if (number > 0) {
+            res.json({
+                error: "scheda gia esistente"
+            })
+        } else {
+            sheet.save()
+                .then(sheet => {
+                    res.json({
+                        sheet
+
+                    })
+                })
+
+        }
     })
+
 });
 
 router.get('/get_sheets', async (req, res) => {
 
     var user_to_compare = req.query.user_id;
-    
-    Sheet.find({user_id: user_to_compare}).then(sheet=>{
-        if(sheet.length > 0){
+
+    Sheet.find({ user_id: user_to_compare }).then(sheet => {
+        if (sheet.length > 0) {
             res.json({
                 sheet
             })
-        
+
 
         } else {
             res.json({
-               message:"l'utente non ha inserito schede",
-               error: "true"
+                message: "l'utente non ha inserito schede",
+                error: "true"
             })
         }
 

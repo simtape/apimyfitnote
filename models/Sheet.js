@@ -5,7 +5,7 @@ const SheetSchema = mongoose.Schema({
     reps: [Number],
     series: [Number],
     date: { type: Date, default: Date.now },
-    name_sheet: String,
+    name_sheet: { type: String, required: true, unique: true },
     user_id: String
 
 })
