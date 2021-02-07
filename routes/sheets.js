@@ -19,27 +19,27 @@ router.post('/create_sheet', async (req, res) => {
     })
 });
 
-router.post('/get_sheets', async (req, res) => {
+router.get('/get_sheets', async (req, res) => {
 
-    var user_to_compare = req.body.user_id;
+    var user_to_compare = req.query.user_id;
     
     Sheet.find({user_id: user_to_compare}).then(sheet=>{
-        if(sheet){
+        if(sheet.length > 0){
             res.json({
-                sheet
+                sheet,
+                error: "false"
             })
         
 
-        } else if(err){
+        } else {
             res.json({
-                errore: err
+               message:"l'utente non ha inserito schede",
+               error: "true"
             })
         }
 
-
-
     });
-    console.log(found_sheet);
+
 
     /* .then(sheet => function (err, result) {
         if (err) {
