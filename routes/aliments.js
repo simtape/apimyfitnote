@@ -41,6 +41,26 @@ router.get('/get_aliments', async(req, res)=>{
 
 
 
+//cerca gli alimenti per nome
+router.get('/search_aliments', async(req, res)=>{
+  try{
+    var name_to_compare = req.query.ricerca;
+    //Alimento.createIndexes({"nome":"text"})
+    const aliments = await Alimento.find(
+      {
+        $text: {$search:name_to_compare}
+ 
+  });
+console.log(aliments);
+res.json(aliments);
+}catch(err)
+{
+    console.log(res.body);
+    res.json({message:err});
+
+}
+});
+
 
 
 

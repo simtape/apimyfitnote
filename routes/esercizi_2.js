@@ -33,4 +33,41 @@ router.post('/inserisci_esercizi', async(res, req)=>{
     }
 })
 
+
+router.get('/search_exercises', async(req, res)=>{
+    try{
+        var nome_to_compare = req.query.ricerca;
+        const exercises = await Esercizio.find(
+          {
+            $text: {$search:nome_to_compare}
+
+    })
+    console.log(exercises);
+    res.json(exercises);
+    }catch(err)
+    {
+        console.log(res.body);
+      res.json({message:err});
+    }
+});
+
+
+router.get('/search_attrezzi', async(req, res)=>{
+    try{
+        var nome_to_compare = req.query.ricerca;
+        const exercises = await Esercizio.find(
+          {
+            $text: {$search:nome_to_compare}
+
+    })
+    console.log(exercises);
+    res.json(exercises);
+    }catch(err)
+    {
+        console.log(res.body);
+      res.json({message:err});
+    }
+});
+
+
 module.exports = router;
