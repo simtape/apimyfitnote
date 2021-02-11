@@ -26,7 +26,7 @@ router.post('/inserisci_alimenti', async(res, req)=>{
 router.get('/get_aliments', async(req, res)=>{
   try{
       const aliments = await Alimento.find();
-      res.json(aliments);
+      res.json({aliments});
       console.log(aliments);
   }catch(err)
   {
