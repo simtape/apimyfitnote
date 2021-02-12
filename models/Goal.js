@@ -13,7 +13,7 @@ const GoalSchema = mongoose.Schema({
     },
     id_user: {
         type: String,
-        required: true
+  
     }
 })
 
