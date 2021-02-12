@@ -6,6 +6,7 @@ const userRoute = require('./routes/users');
 const alimentRoute = require('./routes/aliments');
 const exerciseRoute = require('./routes/esercizi_2');
 const sheetsRoute = require('./routes/sheets');
+const goalsRoute = require('./routes/goals');
 const bodyParser = require('body-parser');
 const Alimento = require('./models/Alimento');
 
@@ -15,6 +16,7 @@ app.use('/users', userRoute);
 app.use('/aliments', alimentRoute);
 app.use('/esercizi_2', exerciseRoute);
 app.use('/sheets', sheetsRoute);
+app.use('/goals', goalsRoute);
 
 mongoose.connect(process.env.DB_CONNECTION, { useNewUrlParser: true }, async () => {
     console.log('connected to db!')
