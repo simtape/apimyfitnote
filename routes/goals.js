@@ -12,8 +12,9 @@ router.post('/create_goals', async (req, res) => {
         valore_attuale: req.body.valore_attuale,
         id_user: req.body.id_user
     })
+    var name_to_append = req.body.name;
     Goal.find({ id_user: req.body.id_user }).count(function (err, number) {
-        if (number != 0) {
+        if (number == 0) {
             goal.save().then(goal => {
                 res.json({
                     goal
@@ -22,15 +23,27 @@ router.post('/create_goals', async (req, res) => {
             });
 
         } else {
+            /*       res.json({
+                      message:"obiettivo gia creato"
+                  }); */
+            Goal.deleteOne({ id_user: req.body.id_user })
+            goal.save().then(goal => {
+                res.json({
+                    goal
+                })
 
-            Goal.updateOne({ id_user: req.body.id_user }, { $push: { name: goal.name } })
+            });
         }
 
 
     })
-
-
-
+    /*     goal.save().then(goal => {
+            res.json({
+                goal
+            })
+    
+    
+        }); */
 });
 
 /* router.post('/get_goals', async (req, res) => {
@@ -45,6 +58,5 @@ router.post('/update_goals', async (req, res) => {
 
 
 }); */
-
 
 module.exports = router;

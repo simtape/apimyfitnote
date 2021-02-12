@@ -6,12 +6,10 @@ const GoalSchema = mongoose.Schema({
         required: true
 },
     obiettivo: {
-        type: [Int16Array],
-        required: false
+        type: [String]
     },
     valore_attuale: {
-        type: [Int16Array],
-        required: false
+        type: [String]
     },
     id_user: {
         type: String,
