@@ -68,17 +68,21 @@ router.post('/create_goals', async (req, res) => {
 });
 
 router.post('/get_goals', async (req, res) => {
-    const goal = await Goal.find({ id_user: req.body.id_user })
-    if (goal.length > 0) {
-        res.json({
-            goal
-        })
+     Goal.findOne({ id_user: req.body.id_user }).then(goal=>{
 
-    } else {
-        res.json({
-            message: "l'utente non ha ancora inserito obiettivi"
-        })
-    }
+        if (goal) {
+            res.json({
+                goal
+            })
+    
+        } else {
+            res.json({
+                message: "l'utente non ha ancora inserito obiettivi"
+            })
+        }
+
+     })
+
 });
 /*
 
