@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 
 const GoalSchema = mongoose.Schema({
-    name: {
-        type: [String],
+    status: {
+        type: [Boolean],
         required: true
 },
     obiettivo: {

@@ -8,13 +8,12 @@ router.post('/create_goals', async (req, res) => {
 
 
     const goal = new Goal({
-        name: req.body.name,
+        status: req.body.status,
         obiettivo: req.body.obiettivo,
         valore_attuale: req.body.valore_attuale,
         id_user: req.body.id_user
     })
-    var name_to_append = req.body.name;
-    var id = req.body.id_user
+
 
     Goal.find({ id_user: req.body.id_user }).count(function (err, number) {
         if (number == 0) {
