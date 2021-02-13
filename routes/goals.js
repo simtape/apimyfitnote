@@ -1,11 +1,11 @@
 const express = require('express');
+const { mongo } = require('mongoose');
 const router = express.Router();
 const Goal = require('../models/Goal');
-
+var objectId = require('mongodb').ObjectID;
 
 
 router.post('/create_goals', async (req, res) => {
-
 
     const goal = new Goal({
         status: req.body.status,
@@ -25,10 +25,6 @@ router.post('/create_goals', async (req, res) => {
             });
 
         } else {
-            /*       res.json({
-                      message:"obiettivo gia creato"
-                  }); */
-
             Goal.remove({ id_user: req.body.id_user }).then(message => [
 
                 res.json({
@@ -48,22 +44,9 @@ router.post('/create_goals', async (req, res) => {
                 res.json({
                     goal
                 })
-
             })
-
-
-
         }
-
-
     })
-    /*     goal.save().then(goal => {
-            res.json({
-                goal
-            })
-    
-    
-        }); */
 });
 
 router.post('/get_goals', async (req, res) => {
@@ -83,12 +66,36 @@ router.post('/get_goals', async (req, res) => {
      })
 
 });
-/*
 
 router.post('/update_goals', async (req, res) => {
+    const goal = new Goal({
+        status: req.body.status,
+        obiettivo: req.body.obiettivo,
+        valore_attuale: req.body.valore_attuale,
+        id_user: req.body.id_user
+    })
+    
+    Goal.find({ id_user: req.body.id_user }).count(function (err, number) {
+            Goal.remove({ id_user: req.body.id_user }).then(message => [
 
+                res.json({
+                    message
+                })
+            ]).catch(error => {
 
+                res.json({
+                    error
+                })
+            })
+            res.json({
+                goal
+            });
 
-}); */
-
+            goal.save().then(goal => {
+                res.json({
+                    goal
+                })
+            })
+        });
+});
 module.exports = router;
