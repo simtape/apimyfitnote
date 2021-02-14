@@ -16,13 +16,13 @@ router.post('/create_sheet', async (req, res) => {
     Sheet.find({ name_sheet: req.body.name_sheet }).count(function (err, number) {
         if (number > 0) {
             res.json({
-                error: "scheda gia esistente"
+                error: true
             })
         } else {
             sheet.save()
                 .then(sheet => {
                     res.json({
-                        sheet
+                        error: false
 
                     })
                 })
