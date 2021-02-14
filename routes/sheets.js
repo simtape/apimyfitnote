@@ -22,6 +22,7 @@ router.post('/create_sheet', async (req, res) => {
             sheet.save()
                 .then(sheet => {
                     res.json({
+                        sheet,
                         error: false
 
                     })
