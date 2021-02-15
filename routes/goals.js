@@ -13,41 +13,11 @@ router.post('/create_goals', async (req, res) => {
         valore_attuale: req.body.valore_attuale,
         id_user: req.body.id_user
     })
-
-
-    Goal.find({ id_user: req.body.id_user }).count(function (err, number) {
-        if (number == 0) {
             goal.save().then(goal => {
                 res.json({
                     goal
-                })
-
             });
-
-        } else {
-            Goal.remove({ id_user: req.body.id_user }).then(message => [
-
-                res.json({
-                    message
-                })
-            ]).catch(error => {
-
-                res.json({
-                    error
-                })
-            })
-            res.json({
-                message: "obiettivo gia creato"
-            });
-
-            goal.save().then(goal => {
-                res.json({
-                    goal
-                })
-            })
-        }
-    })
-});
+        });});
 
 router.post('/get_goals', async (req, res) => {
      Goal.findOne({ id_user: req.body.id_user }).then(goal=>{
@@ -98,4 +68,25 @@ router.post('/update_goals', async (req, res) => {
             })
         });
 });
+router.post('/remove_goals', async (req, res) => {
+    
+    Goal.find({ id_user: req.body.id_user }).count(function (err, number) {
+            Goal.remove({ id_user: req.body.id_user }).then(message => [
+
+                res.json({
+                    message
+                })
+            ]).catch(error => {
+
+                res.json({
+                    error
+                })
+            })
+            res.json({
+                goal
+            });
+
+});
+});
+
 module.exports = router;
