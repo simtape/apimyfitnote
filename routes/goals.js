@@ -74,16 +74,13 @@ router.post('/remove_goals', async (req, res) => {
             Goal.remove({ id_user: req.body.id_user }).then(message => [
 
                 res.json({
-                    message
+                    message : "eliminato correttamente"
                 })
             ]).catch(error => {
 
                 res.json({
                     error
                 })
-            })
-            res.json({
-                goal
             });
 
 });
