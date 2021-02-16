@@ -43,30 +43,12 @@ router.post('/update_goals', async (req, res) => {
         obiettivo: req.body.obiettivo,
         valore_attuale: req.body.valore_attuale,
         id_user: req.body.id_user
-    })
-    
-    Goal.find({ id_user: req.body.id_user }).count(function (err, number) {
-            Goal.remove({ id_user: req.body.id_user }).then(message => [
-
-                res.json({
-                    message
-                })
-            ]).catch(error => {
-
-                res.json({
-                    error
-                })
-            })
+    }) 
+        goal.save().then(goal => {
             res.json({
                 goal
-            });
-
-            goal.save().then(goal => {
-                res.json({
-                    goal
-                })
             })
-        });
+        })
 });
 router.post('/remove_goals', async (req, res) => {
     
