@@ -3,6 +3,7 @@ const router = express.Router();
 const User = require('../models/User');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const { rawListeners } = require('../models/User');
 
 
 
@@ -22,6 +23,7 @@ router.post('/registrazione', async (req, res) => {
             height: req.body.height,
             weight: req.body.weight,
             mail: req.body.mail,
+            date: req.body.date,
             password: hashedPass
         })
         user.save()
@@ -108,4 +110,21 @@ router.post('/login', function (req, res) {
   
 });
 
+router.post('/update_user', async (req, res) => {
+    User.updateOne({mail:req.body.mail}, {
+            name: req.body.name,
+            surname: req.body.surname,
+            weight: req.body.weight,
+            height: req.body.height,
+            date: req.body.date
+  
+    }).then(result => {
+            res.json({message: "OKK"})
+    }).catch(error => {
+        res.json({error})
+    })
+}
+);
+  
+         
 module.exports = router;
