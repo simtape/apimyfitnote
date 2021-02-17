@@ -119,9 +119,9 @@ router.post('/update_user', async (req, res) => {
         date: req.body.date
 
     }).then(result => {
-        res.json({ message: true })
+        res.json({ error: false })
     }).catch(error => {
-        res.json({ message: false })
+        res.json({ error: true })
     })
 }
 );
