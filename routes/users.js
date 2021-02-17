@@ -29,8 +29,8 @@ router.post('/registrazione', async (req, res) => {
         user.save()
             .then(user => {
                 res.json({
-                        user
-                    
+                    user
+
 
                 })
             })
@@ -69,62 +69,62 @@ router.post('/login', function (req, res) {
     var mail_inserita = req.body.mail;
     var password_inserita = req.body.password;
     //console.log(bcrypt.hash(password));
-      User.findOne({ mail: mail_inserita })
-            .then(user => {
-                if (user) {
-                    bcrypt.compare(password_inserita, user.password, function(err, result){
-                        if(err){
-                            res.json({
-                                error:err,
-                                message:"Errore"
-                            })
-                        } 
-                     
-                        if(result){
+    User.findOne({ mail: mail_inserita })
+        .then(user => {
+            if (user) {
+                bcrypt.compare(password_inserita, user.password, function (err, result) {
+                    if (err) {
+                        res.json({
+                            error: err,
+                            message: "Errore"
+                        })
+                    }
 
-                            //message:"Login effettuato con successo",
-                            res.json({
-                              
-                                user
-    
-                            })
-    
-                        }else{
-                            res.json({
-                                message:"Password sbagliata"
-    
-                            })
-    
-                        }
-    
-                    })
-                }else{
-                    res.json({
-                        message:"Utente sbagliato"
-    
-                    })
-    
-                }
+                    if (result) {
+
+                        //message:"Login effettuato con successo",
+                        res.json({
+
+                            user
+
+                        })
+
+                    } else {
+                        res.json({
+                            message: "Password sbagliata"
+
+                        })
+
+                    }
+
+                })
+            } else {
+                res.json({
+                    message: "Utente sbagliato"
+
+                })
+
             }
-    ) 
-  
+        }
+        )
+
 });
 
 router.post('/update_user', async (req, res) => {
-    User.updateOne({mail:req.body.mail}, {
-            name: req.body.name,
-            surname: req.body.surname,
-            weight: req.body.weight,
-            height: req.body.height,
-            date: req.body.date
-  
+    User.updateOne({ mail: req.body.mail }, {
+        name: req.body.name,
+        surname: req.body.surname,
+        weight: req.body.weight,
+        height: req.body.height,
+        date: req.body.date
+
     }).then(result => {
-            res.json({message: "OKK"})
+        res.json({ message: true })
     }).catch(error => {
-        res.json({error})
+        res.json({ message: false })
     })
 }
 );
-  
-         
+
+
 module.exports = router;
