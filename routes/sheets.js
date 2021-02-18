@@ -71,25 +71,23 @@ router.get('/get_sheets', async (req, res) => {
 });
 
 
-router.post('/get_last_sheet', async(req,res)=>{
-
-    Sheet.findOne({user_id: req.body.user_id}).then(sheet=>{
-            if(sheet.length>0){
-                res.json({
-                    sheet,
-                    error:false
-                })
-            }else{
-                res.json({
-                  
-                    error:true
-                })
-            }
+router.post('/get_last_sheet', async (req, res) => {
 
 
+    var last_sheet = await Sheet.findOne({ user_id: req.body.user_id });
+
+    if (last_sheet) {
+        res.json({
+            error: false,
+            last_sheet
+        })
+    } else {({
+        error:true
     })
 
-});
+    }
+}
+);
 
 
 module.exports = router;
