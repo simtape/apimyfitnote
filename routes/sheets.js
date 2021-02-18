@@ -74,7 +74,7 @@ router.get('/get_sheets', async (req, res) => {
 router.post('/get_last_sheet', async (req, res) => {
 
 
-    var last_sheet = await Sheet.findOne({ user_id: req.body.user_id });
+    var last_sheet = await Sheet.find({ user_id: req.body.user_id }).sort({"_id" : -1}).limit(1)
 
     if (last_sheet) {
         res.json({
