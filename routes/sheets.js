@@ -74,18 +74,22 @@ router.get('/get_sheets', async (req, res) => {
 router.post('/get_last_sheet', async (req, res) => {
 
 
-    var last_sheet = await Sheet.find({ user_id: req.body.user_id }).sort({"_id" : -1}).limit(1)
+    Sheet.find({ user_id: req.body.user_id }).sort({"_id" : -1}).limit(1).then(result =>{
 
-    if (last_sheet) {
-        res.json({
-            error: false,
-            last_sheet
+        if (result.length>0) {
+            res.json({
+                error: false,
+                result
+            })
+        } else {
+            res.json({
+            error:true
         })
-    } else {({
-        error:true
-    })
+    
+        }
+    });
 
-    }
+  
 }
 );
 
