@@ -74,7 +74,7 @@ router.get('/get_sheets', async (req, res) => {
 router.post('/get_last_sheet', async(req,res)=>{
 
     Sheet.findOne({user_id: req.body.user}).then(sheet=>{
-            if(sheet){
+            if(sheet.length>0){
                 res.json({
                     sheet,
                     error:false
