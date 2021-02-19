@@ -40,14 +40,15 @@ router.get('/get_sheets', async (req, res) => {
     Sheet.find({ user_id: user_to_compare }).then(sheet => {
         if (sheet.length > 0) {
             res.json({
-                sheet
+                sheet,
+                error:false
             })
 
 
         } else {
             res.json({
                 message: "l'utente non ha inserito schede",
-                error: "true"
+                error: true
             })
         }
 
