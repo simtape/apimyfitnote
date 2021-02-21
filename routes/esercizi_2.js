@@ -7,7 +7,7 @@ var exercises = JSON.parse(rawdata);
 
 router.get('/get', async(req, res)=>{
     try{
-        const exercises = await Esercizio.find();
+        const exercises = await Esercizio.find().sort({nome:1});
         res.json({exercises});
         console.log(exercises);
     }catch(err)

@@ -37,7 +37,7 @@ router.get('/get_sheets', async (req, res) => {
 
     var user_to_compare = req.query.user_id;
 
-    Sheet.find({ user_id: user_to_compare }).then(sheet => {
+    Sheet.find({ user_id: user_to_compare }).sort({name_sheet:1}).then(sheet => {
         if (sheet.length > 0) {
             res.json({
                 sheet,
