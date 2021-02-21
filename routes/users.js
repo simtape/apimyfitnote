@@ -126,5 +126,26 @@ router.post('/update_user', async (req, res) => {
 }
 );
 
+router.post('/find_mail', async(req, res)=>{
+    User.find({ mail: req.body.mail}).count(function (err, number) {
+        if (number>0) {
+
+            res.json({
+                error: true
+            })
+        }else{
+            res.json({
+                error: false
+            })
+
+        }
+
+
+    });
+
+
+
+});
+
 
 module.exports = router;
